@@ -11,16 +11,28 @@ function checkPin() {
         startTyping();
         autoSlide();
         enableMusic();
+        spawnRoses(); // 🌹
     } else {
         document.getElementById("error").innerText = "رمز خاطئ ❤️";
     }
 }
 
-/* 🎵 تشغيل الموسيقى (متوافق مع الموبايل) */
+/* 🎵 تشغيل الموسيقى (متوافق مع الموبايل + fade) */
 function enableMusic() {
     const music = document.getElementById("music");
 
+    music.volume = 0;
     music.play().catch(() => {});
+
+    let volume = 0;
+    const fade = setInterval(() => {
+        if (volume < 1) {
+            volume += 0.05;
+            music.volume = volume;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
 
     const startMusic = () => {
         music.play().catch(() => {});
@@ -30,7 +42,7 @@ function enableMusic() {
     document.addEventListener("touchstart", startMusic, { once: true });
 }
 
-/* 💌 رسالة (مقسمة للموبايل) */
+/* 💌 رسالة (مناسبة للموبايل) */
 const textLines = [
     "حبيبتي مجودة ❤️",
     "في مثل هذا اليوم بدأت أجمل قصة في حياتي ❤️",
@@ -96,6 +108,11 @@ function toggleMusic() {
 /* 🎁 */
 function showSurprise() {
     document.getElementById("surprise").classList.remove("hidden");
+
+    // اهتزاز خفيف للموبايل
+    if (navigator.vibrate) {
+        navigator.vibrate(100);
+    }
 }
 
 /* ❤️ */
@@ -124,13 +141,30 @@ function showCustomMessage(message) {
         ">
             <p style="font-size:18px; line-height:1.6;">${message}</p>
             <button onclick="this.parentElement.parentElement.remove()" 
-                style="margin-top:15px; padding:10px 20px; background:pink; border:none; width:100%;">
+                style="margin-top:15px; padding:10px; background:pink; border:none; width:100%;">
                 ❤️
             </button>
         </div>
     `;
 
     document.body.appendChild(box);
+}
+
+/* 🌹 ورود متساقطة */
+function spawnRoses() {
+    setInterval(() => {
+        const rose = document.createElement("div");
+        rose.innerHTML = "🌹";
+        rose.style.position = "fixed";
+        rose.style.top = "-50px";
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.fontSize = "20px";
+        rose.style.animation = "fall 6s linear";
+
+        document.body.appendChild(rose);
+
+        setTimeout(() => rose.remove(), 6000);
+    }, 800);
 }
 
 /* 🎬 intro */
@@ -179,15 +213,19 @@ function startIntro() {
     typeTitle();
 }
 
-/* 🚀 تشغيل بعد تحميل الصفحة */
-window.addEventListener("DOMContentLoaded", () => {
+/* 🚀 تشغيل آمن */
+document.addEventListener("DOMContentLoaded", () => {
+
     startIntro();
 
     const pinInput = document.getElementById("pin");
 
-    pinInput.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-            checkPin();
-        }
-    });
+    if (pinInput) {
+        pinInput.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                checkPin();
+            }
+        });
+    }
+
 });

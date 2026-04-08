@@ -1,9 +1,11 @@
+/* 🌍 إعداد عام */
 body {
     margin: 0;
     background: black;
     color: white;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: center;
+    overflow-x: hidden;
 }
 
 /* 🌌 خلفية النجوم */
@@ -21,7 +23,7 @@ body {
     to {background-position: 10000px 5000px;}
 }
 
-/* شاشة */
+/* 🎬 شاشة */
 .screen {
     margin-top: 80px;
 }
@@ -30,54 +32,121 @@ body {
     display: none;
 }
 
-/* النص */
+/* ✨ نص البداية */
 .intro-text {
     max-width: 500px;
     margin: auto;
     line-height: 2;
-    font-size: 20px;
+    font-size: 22px;
+    padding: 15px;
+    animation: fadeIn 2s ease forwards;
 }
 
-/* إدخال الرقم */
+/* 💖 العنوان */
+#introTitle {
+    font-size: 36px;
+    color: pink;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px rgba(255, 192, 203, 0.8);
+}
+
+/* 💌 النص */
+#introMessage {
+    font-size: 22px;
+    line-height: 2;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* 🔐 إدخال الرقم */
 .pin-container {
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .pin-container input {
-    padding: 10px;
-    font-size: 20px;
-    width: 120px;
+    padding: 12px;
+    font-size: 24px;
+    width: 140px;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
+    background: #222;
+    color: white;
+    border: 1px solid pink;
 }
 
 .pin-container button {
-    padding: 10px 20px;
+    padding: 12px 20px;
     background: pink;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
 }
 
-/* الصور */
+.pin-container button:hover {
+    transform: scale(1.05);
+}
+
+/* 📸 الصور */
 img {
     width: 80%;
     max-width: 400px;
     border-radius: 15px;
-    transition: opacity 0.5s;
+    transition: all 0.5s ease;
 }
 
-/* زر الموسيقى */
+/* ❤️ نبض النص */
+#typing {
+    font-size: 24px;
+    line-height: 2;
+    padding: 15px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.05);}
+    100% { transform: scale(1);}
+}
+
+/* 🎬 Fade */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* 🌹 ورود */
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 22px;
+    animation: fall 6s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* 🎵 زر الموسيقى */
 #musicBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    font-size: 18px;
+    background: pink;
+    border: none;
+    border-radius: 50%;
+    padding: 12px;
 }
-/* 📱 تحسين كامل للموبايل */
+
+/* 📱 تحسين الموبايل الكامل */
 @media (max-width: 600px) {
 
     body {
@@ -88,25 +157,21 @@ img {
         margin-top: 40px;
     }
 
-    .intro-text {
-        font-size: 18px;
-        padding: 10px;
-        line-height: 2;
-    }
-
     #introTitle {
-        font-size: 26px;
+        font-size: 28px;
     }
 
     #introMessage {
+        font-size: 20px;
+    }
+
+    .intro-text {
         font-size: 18px;
-        line-height: 2;
     }
 
     #typing {
         font-size: 20px;
         line-height: 2;
-        padding: 10px;
     }
 
     img {
@@ -122,28 +187,16 @@ img {
     .pin-container input {
         width: 90%;
         font-size: 22px;
-        padding: 12px;
     }
 
     .pin-container button {
         width: 90%;
         font-size: 18px;
-        padding: 12px;
-    }
-
-    button {
-        font-size: 16px;
-        padding: 12px 20px;
     }
 }
 
-/* ✨ تحسين القراءة */
+/* ✨ منع خروج النص */
 p, h1, h2 {
     word-break: break-word;
     overflow-wrap: break-word;
-}
-
-/* 🎬 نعومة الحركة */
-img {
-    transition: all 0.5s ease;
 }
