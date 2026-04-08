@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+/* 🌌 خلفية النجوم */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.imgur.com/YKY28eT.png');
+    animation: moveStars 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveStars {
+    from {background-position: 0 0;}
+    to {background-position: 10000px 5000px;}
+}
+
+/* شاشة */
+.screen {
+    margin-top: 80px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* النص */
+.intro-text {
+    max-width: 500px;
+    margin: auto;
+    line-height: 2;
+    font-size: 20px;
+}
+
+/* إدخال الرقم */
+.pin-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pin-container input {
+    padding: 10px;
+    font-size: 20px;
+    width: 120px;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+}
+
+.pin-container button {
+    padding: 10px 20px;
+    background: pink;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* الصور */
+img {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 15px;
+    transition: opacity 0.5s;
+}
+
+/* زر الموسيقى */
+#musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+/* 📱 تحسين الموبايل */
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .intro-text {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #introTitle {
+        font-size: 22px;
+    }
+
+    #introMessage {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    #typing {
+        font-size: 18px;
+        padding: 10px;
+        word-wrap: break-word;
+    }
+
+    img {
+        width: 95%;
+    }
+
+    .pin-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .pin-container input {
+        width: 80%;
+        font-size: 18px;
+    }
+
+    .pin-container button {
+        width: 80%;
+    }
+}

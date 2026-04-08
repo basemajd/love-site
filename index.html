@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>❤️ Our Story ❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 🌌 خلفية -->
+<div class="stars"></div>
+
+<!-- 🔐 شاشة القفل -->
+<div id="lockScreen" class="screen">
+
+    <div class="intro-text">
+        <h2 id="introTitle"></h2>
+        <p id="introMessage"></p>
+    </div>
+
+    <div class="pin-container">
+        <input type="password" id="pin" maxlength="4" placeholder="••••">
+        <button onclick="checkPin()">دخول</button>
+    </div>
+
+    <p id="error"></p>
+
+</div>
+
+<!-- 🎬 المحتوى -->
+<div id="mainContent" class="screen hidden">
+
+    <audio id="music" src="music.mp3" loop></audio>
+
+    <!-- 💌 -->
+    <section class="scene">
+        <h1 id="typing"></h1>
+    </section>
+
+    <!-- ❤️ -->
+    <div class="hearts"></div>
+
+    <!-- 📸 ألبوم الصور -->
+    <section class="scene">
+        <div class="slider-container">
+            <img id="slider" src="img1.jpeg">
+            <p id="caption">أنتِ أجمل لحظات عمري ❤️</p>
+        </div>
+    </section>
+
+    <!-- 🎁 -->
+    <section class="scene">
+        <button onclick="showSurprise()">اضغطي هنا ❤️</button>
+
+        <div id="surprise" class="hidden">
+            <h2>هل تحبينني؟ 💍</h2>
+            <button onclick="yes()">نعم ❤️</button>
+        </div>
+    </section>
+
+</div>
+
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
