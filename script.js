@@ -16,38 +16,45 @@ function checkPin() {
     }
 }
 
-/* 🎵 تشغيل الموسيقى */
+/* 🎵 تشغيل الموسيقى (متوافق مع الموبايل) */
 function enableMusic() {
     const music = document.getElementById("music");
 
     music.play().catch(() => {});
 
-    document.addEventListener("click", () => {
+    const startMusic = () => {
         music.play().catch(() => {});
-    }, { once: true });
+    };
 
-    document.addEventListener("touchstart", () => {
-        music.play().catch(() => {});
-    }, { once: true });
+    document.addEventListener("click", startMusic, { once: true });
+    document.addEventListener("touchstart", startMusic, { once: true });
 }
 
-/* 💌 رسالة */
-const text = "حبيبتي مجودة ❤️ في مثل هذا اليوم بدأت أجمل قصة في حياتي ❤️ بدأت رحلتي معكي والتي ستكون الى اخر نفس  في عمري ❤️  اليوم أحبك أكثر من أي وقت مضى ❤️ بحبك يا عمري ❤️";
-let i = 0;
+/* 💌 رسالة (مقسمة للموبايل) */
+const textLines = [
+    "حبيبتي مجودة ❤️",
+    "في مثل هذا اليوم بدأت أجمل قصة في حياتي ❤️",
+    "بدأت رحلتي معكِ… والتي ستكون إلى آخر نفس ❤️",
+    "اليوم أحبك أكثر من أي وقت مضى ❤️",
+    "بحبك يا عمري ❤️"
+];
 
+/* 🎬 كتابة سطر سطر */
 function startTyping() {
     const el = document.getElementById("typing");
     el.innerHTML = "";
 
-    function type() {
-        if (i < text.length) {
-            el.innerHTML += text[i];
+    let i = 0;
+
+    function showLine() {
+        if (i < textLines.length) {
+            el.innerHTML += textLines[i] + "<br><br>";
             i++;
-            setTimeout(type, 40);
+            setTimeout(showLine, 900);
         }
     }
 
-    type();
+    showLine();
 }
 
 /* 📸 الصور */
@@ -60,6 +67,7 @@ const images = [
 
 let index = 0;
 
+/* عرض الصورة */
 function show() {
     const img = document.getElementById("slider");
 
@@ -71,6 +79,7 @@ function show() {
     }, 400);
 }
 
+/* تشغيل تلقائي */
 function autoSlide() {
     setInterval(() => {
         index = (index + 1) % images.length;
@@ -94,7 +103,37 @@ function yes() {
     showCustomMessage("كنت أعرف أنك ستقولين نعم ❤️ وأنا سأبقى أحبك إلى الأبد");
 }
 
-/* 🎬 intro سينمائي */
+/* 💬 رسالة احترافية */
+function showCustomMessage(message) {
+    const box = document.createElement("div");
+
+    box.innerHTML = `
+        <div style="
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:90%;
+            max-width:300px;
+            background:#222;
+            padding:20px;
+            border-radius:15px;
+            text-align:center;
+            z-index:999;
+            box-shadow:0 0 20px pink;
+        ">
+            <p style="font-size:18px; line-height:1.6;">${message}</p>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                style="margin-top:15px; padding:10px 20px; background:pink; border:none; width:100%;">
+                ❤️
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(box);
+}
+
+/* 🎬 intro */
 function startIntro() {
 
     const title = "حبيبتي ❤️";
@@ -102,21 +141,27 @@ function startIntro() {
         "بمناسبة عيد زواجنا الرابع عشر 💍",
         "أحببت أن أقدم لكِ هذه الهدية 🎁",
         "أرجو أن تنال إعجابك ❤️",
-        "ادخلي الأرقام الاربع الخاصة بنا والتي تعشقينها❤️  "
+        "ادخلي الأرقام الخاصة بنا ❤️"
     ];
 
     let i = 0;
+
+    const titleEl = document.getElementById("introTitle");
+    const msgEl = document.getElementById("introMessage");
+
+    titleEl.innerHTML = "";
+    msgEl.innerHTML = "";
 
     function typeTitle() {
         let index = 0;
 
         function type() {
             if (index < title.length) {
-                document.getElementById("introTitle").innerHTML += title[index];
+                titleEl.innerHTML += title[index];
                 index++;
-                setTimeout(type, 80);
+                setTimeout(type, 70);
             } else {
-                showLines();
+                setTimeout(showLines, 600);
             }
         }
 
@@ -125,45 +170,24 @@ function startIntro() {
 
     function showLines() {
         if (i < lines.length) {
-            document.getElementById("introMessage").innerHTML += lines[i] + "<br><br>";
+            msgEl.innerHTML += lines[i] + "<br><br>";
             i++;
-            setTimeout(showLines, 1200);
+            setTimeout(showLines, 1000);
         }
     }
 
     typeTitle();
 }
-function showCustomMessage(message) {
-    const box = document.createElement("div");
 
-    box.innerHTML = `
-        <div style="
-            position:fixed;
-            top:40%;
-            left:50%;
-            transform:translate(-50%,-50%);
-            background:#222;
-            padding:30px;
-            border-radius:15px;
-            text-align:center;
-            z-index:999;
-            box-shadow:0 0 20px pink;
-        ">
-            <p style="font-size:20px;">${message}</p>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                style="margin-top:15px; padding:10px 20px; background:pink; border:none;">
-                ❤️
-            </button>
-        </div>
-    `;
+/* 🚀 تشغيل بعد تحميل الصفحة */
+window.addEventListener("DOMContentLoaded", () => {
+    startIntro();
 
-    document.body.appendChild(box);
-}
-window.onload = startIntro;
+    const pinInput = document.getElementById("pin");
 
-/* Enter */
-document.getElementById("pin").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        checkPin();
-    }
+    pinInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkPin();
+        }
+    });
 });

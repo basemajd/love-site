@@ -77,35 +77,41 @@ img {
     bottom: 20px;
     right: 20px;
 }
-/* 📱 تحسين الموبايل */
+/* 📱 تحسين كامل للموبايل */
 @media (max-width: 600px) {
 
     body {
         padding: 10px;
     }
 
+    .screen {
+        margin-top: 40px;
+    }
+
     .intro-text {
-        font-size: 16px;
+        font-size: 18px;
         padding: 10px;
+        line-height: 2;
     }
 
     #introTitle {
-        font-size: 22px;
+        font-size: 26px;
     }
 
     #introMessage {
-        font-size: 16px;
-        line-height: 1.8;
+        font-size: 18px;
+        line-height: 2;
     }
 
     #typing {
-        font-size: 18px;
+        font-size: 20px;
+        line-height: 2;
         padding: 10px;
-        word-wrap: break-word;
     }
 
     img {
-        width: 95%;
+        width: 100%;
+        border-radius: 12px;
     }
 
     .pin-container {
@@ -114,11 +120,30 @@ img {
     }
 
     .pin-container input {
-        width: 80%;
-        font-size: 18px;
+        width: 90%;
+        font-size: 22px;
+        padding: 12px;
     }
 
     .pin-container button {
-        width: 80%;
+        width: 90%;
+        font-size: 18px;
+        padding: 12px;
     }
+
+    button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+/* ✨ تحسين القراءة */
+p, h1, h2 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 🎬 نعومة الحركة */
+img {
+    transition: all 0.5s ease;
 }
