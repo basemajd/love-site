@@ -200,3 +200,35 @@ p, h1, h2 {
     word-break: break-word;
     overflow-wrap: break-word;
 }
+/* 💖 عرض بجانب بعض */
+.love-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* مهم للموبايل */
+}
+
+/* صندوق السؤال */
+.inline-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #222;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+/* النص */
+.inline-box span {
+    font-size: 16px;
+}
+
+/* زر نعم */
+.inline-box button {
+    padding: 8px 12px;
+    background: pink;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
